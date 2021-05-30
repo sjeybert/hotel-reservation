@@ -4,6 +4,7 @@ import model.IRoom;
 import model.Room;
 import model.RoomType;
 
+import java.util.Collection;
 import java.util.Scanner;
 
 public class AdminMenu {
@@ -50,8 +51,13 @@ public class AdminMenu {
     }
 
     private static void getAllCustomers() {
-        for (Customer customer : AdminResource.getAllCustomers()) {
-            System.out.println(customer.toString());
+        Collection<Customer> allCustomers = AdminResource.getAllCustomers();
+        if (allCustomers.isEmpty()) {
+            System.out.println("There are no customers");
+        } else {
+            for (Customer customer : allCustomers) {
+                System.out.println(customer.toString());
+            }
         }
         System.out.println();
     }
@@ -65,7 +71,7 @@ public class AdminMenu {
             if (choice.equalsIgnoreCase("y") || choice.equalsIgnoreCase("yes")) {
                 keepAddingRooms = true;
             } else {
-                keepAddingRooms = false;
+                keepAddingRooms = false; // for any other input, stop adding rooms
             }
         } while (keepAddingRooms);
     }
@@ -112,8 +118,13 @@ public class AdminMenu {
     }
 
     private static void getAllRooms() {
-        for (IRoom room : AdminResource.getAllRooms()) {
-            System.out.println(room.toString());
+        Collection<IRoom> allRooms = AdminResource.getAllRooms();
+        if (allRooms.isEmpty()) {
+            System.out.println("There are no rooms");
+        } else {
+            for (IRoom room : allRooms) {
+                System.out.println(room.toString());
+            }
         }
         System.out.println();
     }
