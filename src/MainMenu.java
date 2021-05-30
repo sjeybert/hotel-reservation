@@ -1,3 +1,5 @@
+import api.HotelResource;
+
 import java.util.Scanner;
 
 public class MainMenu {
@@ -25,7 +27,7 @@ public class MainMenu {
                 System.out.println("Main 2");
                 break;
             case 3:
-                System.out.println("Main 3");
+                createAccount(scanner);
                 break;
             case 4:
                 runAdminMenu(scanner);
@@ -48,6 +50,25 @@ public class MainMenu {
                 keepAdminRunning = AdminMenu.executeOption(scanner, adminSelection);
             } catch (Exception ex) {
                 System.out.println("Please enter a number between 1 and 6\n");
+            }
+        }
+    }
+
+    private static void createAccount(Scanner scanner) {
+        System.out.println("First name: ");
+        String firstName = scanner.nextLine();
+        System.out.println("Last name: ");
+        String lastName = scanner.nextLine();
+        boolean validEmail = false;
+        while (!validEmail) {
+            try {
+                System.out.println("Email (format: name@example.com): ");
+                String email = scanner.nextLine();
+                HotelResource.createCustomer(email, firstName, lastName);
+                System.out.println("Account created successfully!\n");
+                validEmail = true;
+            } catch (IllegalArgumentException ex) {
+                System.out.println(ex.getLocalizedMessage());
             }
         }
     }

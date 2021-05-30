@@ -2,6 +2,7 @@ package service;
 
 import model.Customer;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,8 +19,8 @@ public class CustomerService {
         return customerMap.get(customerEmail);
     }
 
-    public static Map<String, Customer> getAllCustomers() {
-        return customerMap;
+    public static Collection<Customer> getAllCustomers() {
+        return customerMap.values();
     }
 
 }

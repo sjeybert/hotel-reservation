@@ -5,6 +5,7 @@ import model.IRoom;
 import service.CustomerService;
 import service.ReservationService;
 
+import java.util.Collection;
 import java.util.Map;
 
 public class AdminResource {
@@ -17,11 +18,11 @@ public class AdminResource {
         ReservationService.addRoom(room);
     }
 
-    public static Map<String, IRoom> getAllRooms() {
+    public static Collection<IRoom> getAllRooms() {
         return ReservationService.getAllRooms();
     }
 
-    public static Map<String, Customer> getAllCustomers() {
+    public static Collection<Customer> getAllCustomers() {
         return CustomerService.getAllCustomers();
     }
 

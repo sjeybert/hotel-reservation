@@ -39,8 +39,8 @@ public class ReservationService {
 
     }
 
-    public static Map<String, IRoom> getAllRooms() {
-        return roomMap;
+    public static Collection<IRoom> getAllRooms() {
+        return roomMap.values();
     }
 
 }
