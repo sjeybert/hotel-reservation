@@ -16,6 +16,29 @@ public class Reservation {
         this.checkOutDate = checkOutDate;
     }
 
+    public Date getCheckInDate() {
+        return this.checkInDate;
+    }
+
+    public Date getCheckOutDate() {
+        return this.checkOutDate;
+    }
+
+    public Customer getCustomer() {
+        return this.customer;
+    }
+
+    public IRoom getRoom() {
+        return this.room;
+    }
+
+    public boolean isRoomReserved(Date checkInDate, Date checkOutDate) {
+        if (checkInDate.before(this.checkOutDate) && checkOutDate.after(this.checkInDate)) {
+            return true;
+        }
+        return false;
+    }
+
     public String toString() {
         return "Reservation{" +
                 "customer=" + customer +
