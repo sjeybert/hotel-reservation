@@ -1,7 +1,7 @@
 #Hotel Reservation App
 
 ##Introduction
-This is Project 1 of the Udacity Java Programmer Program. The objective of the project is to build a "Hotel Reservation" app, covering the fundamentals of the Java programming language. The app runs on the command line and be launched by executing the `main` method on the `src/HotelApplication` class.
+This is Project 1 of Udacity's Java Programming course. The objective of the project is to build a "Hotel Reservation" app, covering the fundamentals of the Java programming language. The app runs on the command line and be launched by executing the `main` method on the `src/HotelApplication` class.
 
 ##App Features
 
