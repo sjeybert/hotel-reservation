@@ -32,7 +32,7 @@ public class MainMenu {
                 findAndReserveRoom(scanner);
                 break;
             case 2:
-                System.out.println("Main 2");
+                getCustomerReservations(scanner);
                 break;
             case 3:
                 createAccount(scanner);
@@ -81,6 +81,24 @@ public class MainMenu {
             }
         }
         return email;
+    }
+
+    private static void getCustomerReservations(Scanner scanner) {
+        System.out.println("Please enter your Email (format: name@example.com): ");
+        String email = scanner.nextLine();
+        Customer customer = HotelResource.getCustomer(email);
+        if (customer == null) {
+            System.out.println("Sorry, no account exists for that email");
+            return;
+        }
+        Collection<Reservation> reservations = HotelResource.getCustomerReservations(customer.getEmail());
+        if (reservations.isEmpty()) {
+            System.out.println("You don't have any reservations at the moment");
+            return;
+        }
+        for (Reservation reservation : reservations) {
+            System.out.println(reservation.toString());
+        }
     }
 
     private static void findAndReserveRoom(Scanner scanner) {
