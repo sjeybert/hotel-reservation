@@ -139,8 +139,12 @@ public class MainMenu {
         IRoom room = getRoomForReservation(scanner, availableRooms);
         // finally, book room and show reservation details
         Reservation reservation = HotelResource.bookRoom(customer.getEmail(), room, checkInDate, checkOutDate);
-        System.out.println("Thank you! Your room was booked successfully!");
-        System.out.println(reservation);
+        if (reservation == null) {
+            System.out.println("Couldn't process your booking, the room is not available"); // this shouldn't happen as we validated that the room is available previously
+        } else {
+            System.out.println("Thank you! Your room was booked successfully!");
+            System.out.println(reservation);
+        }
     }
 
     private static Date getValidCheckInDate(Scanner scanner) {

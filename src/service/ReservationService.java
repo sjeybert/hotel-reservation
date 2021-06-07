@@ -4,9 +4,7 @@ import model.Customer;
 import model.IRoom;
 import model.Reservation;
 
-import java.awt.List;
 import java.util.*;
-import java.util.function.Supplier;
 
 public class ReservationService {
 
@@ -22,6 +20,10 @@ public class ReservationService {
     }
 
     public static Reservation reserveRoom(Customer customer, IRoom room, Date checkInDate, Date checkOutDate) {
+        // validate room is not already reserved
+        if (isRoomReserved(room, checkInDate, checkOutDate)) {
+            return null;
+        }
         Reservation reservation = new Reservation(customer, room, checkInDate, checkOutDate);
         Collection<Reservation> customerReservations = getCustomerReservations(customer);
         if (customerReservations == null) {
@@ -34,13 +36,8 @@ public class ReservationService {
 
     public static Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate) {
         // get all rooms reserved within the check-in and check-out dates
-        Collection<IRoom> reservedRooms = new LinkedList<>();
-        for (Reservation reservation : getAllReservations()) {
-            if (reservation.isRoomReserved(checkInDate, checkOutDate)) {
-                reservedRooms.add(reservation.getRoom());
-            }
-        }
-        // get available rooms (all rooms that are not reserved)
+        Collection<IRoom> reservedRooms = getAllReservedRooms(checkInDate, checkOutDate);
+        // get all available rooms (all rooms that are not reserved)
         Collection<IRoom> availableRooms = new LinkedList<>();
         for (IRoom room : getAllRooms()) {
             if (!reservedRooms.contains(room)) {
@@ -64,6 +61,25 @@ public class ReservationService {
 
     public static Collection<IRoom> getAllRooms() {
         return roomMap.values();
+    }
+
+    private static Collection<IRoom> getAllReservedRooms(Date checkInDate, Date checkOutDate) {
+        Collection<IRoom> reservedRooms = new LinkedList<>();
+        for (Reservation reservation : getAllReservations()) {
+            if (reservation.isRoomReserved(checkInDate, checkOutDate)) {
+                reservedRooms.add(reservation.getRoom());
+            }
+        }
+        return reservedRooms;
+    }
+
+    private static boolean isRoomReserved(IRoom room, Date checkInDate, Date checkOutDate) {
+        // get all rooms reserved within the check-in and check-out dates
+        Collection<IRoom> reservedRooms = getAllReservedRooms(checkInDate, checkOutDate);
+        if (reservedRooms.contains(room)) {
+            return true;
+        }
+        return false;
     }
 
 }
