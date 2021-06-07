@@ -34,14 +34,14 @@ public class ReservationService {
 
     public static Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate) {
         // get all rooms reserved within the check-in and check-out dates
-        Collection<IRoom> reservedRooms = null;
+        Collection<IRoom> reservedRooms = new LinkedList<>();
         for (Reservation reservation : getAllReservations()) {
             if (reservation.isRoomReserved(checkInDate, checkOutDate)) {
                 reservedRooms.add(reservation.getRoom());
             }
         }
         // get available rooms (all rooms that are not reserved)
-        Collection<IRoom> availableRooms = null;
+        Collection<IRoom> availableRooms = new LinkedList<>();
         for (IRoom room : getAllRooms()) {
             if (!reservedRooms.contains(room)) {
                 availableRooms.add(room);

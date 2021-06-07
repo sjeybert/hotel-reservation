@@ -160,7 +160,7 @@ public class AdminMenu {
         String roomNumber = null;
         Double price = 0.00;
         RoomType roomType = null;
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 3; i++) {
             roomNumber = Integer.toString(i);
             if (i % 2 == 0) {
                 price = 200.00;
@@ -198,7 +198,7 @@ public class AdminMenu {
         c.setTime(checkInDate);
         c.add(Calendar.DATE, 10);
         checkOutDate = c.getTime();
-        HotelResource.bookRoom("test3@mail.com", HotelResource.getRoom("4"), checkInDate, checkOutDate);
+        HotelResource.bookRoom("test3@mail.com", HotelResource.getRoom("2"), checkInDate, checkOutDate);
         // reservation 3
         c.setTime(today);
         c.add(Calendar.DATE, 5);
@@ -206,7 +206,7 @@ public class AdminMenu {
         c.setTime(checkInDate);
         c.add(Calendar.DATE, 3);
         checkOutDate = c.getTime();
-        HotelResource.bookRoom("test4@mail.com", HotelResource.getRoom("9"), checkInDate, checkOutDate);
+        HotelResource.bookRoom("test4@mail.com", HotelResource.getRoom("3"), checkInDate, checkOutDate);
 
         System.out.println("Test data added!");
     }

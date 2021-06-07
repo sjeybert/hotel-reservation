@@ -40,12 +40,10 @@ public class Reservation {
     }
 
     public String toString() {
-        return "Reservation{" +
-                "customer=" + customer +
-                ", room=" + room +
-                ", checkInDate=" + checkInDate +
-                ", checkOutDate=" + checkOutDate +
-                '}';
+        return "Reservation for " + this.customer +
+                ", " + room +
+                ", Check-In on: " + this.checkInDate +
+                ", Check-Out on: " + this.checkOutDate;
     }
 
 }
